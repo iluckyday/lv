@@ -1,0 +1,41 @@
+name: get latest version
+
+on:
+  schedule:
+    - cron:  "0 0 * * *"
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: v2ray
+        run: "curl -skL https://api.github.com/repos/v2ray/v2ray-core/releases/latest | jq -r '.tag_name' > v2ray.txt"
+      - name: ffsend
+        run: "curl -skL https://api.github.com/repos/timvisee/ffsend/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > ffsend.txt"
+      - name: coredns
+        run: "curl -skL https://api.github.com/repos/coredns/coredns/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > coredns.txt"
+      - name: frp
+        run: "curl -skL https://api.github.com/repos/fatedier/frp/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > frp.txt"
+      - name: cfssl
+        run: "curl -skL https://api.github.com/repos/cloudflare/cfssl/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > cfssl.txt"
+      - name: kubernetes
+        run: "curl -skLo kubernetes.txt https://dl.k8s.io/release/stable-1.txt"
+      - name: cpolar
+        run: |
+          curl -skLo /tmp/cpolar.zip https://www.cpolar.com/static/downloads/cpolar-stable-linux-amd64.zip
+          unzip -q -d /tmp /tmp/cpolar.zip
+          /tmp/cpolar version  > cpolar.txt
+      - name: ngrok
+        run: |
+          curl -skLo /tmp/ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+          unzip -q -d /tmp /tmp/ngrok.zip
+          chmod +x /tmp/ngrok
+          /tmp/ngrok version  > ngrok.txt
+      - name: commit
+        run: |
+          git config --global user.name "iluckyday"
+          git config --global user.email "luckyday1990@mail.com"
+          git add .
+          git commit -m "$(date +'%Y%m%d')"
+          git push origin master
