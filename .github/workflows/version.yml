@@ -11,14 +11,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: v2ray
         run: "curl -skL https://api.github.com/repos/v2ray/v2ray-core/releases/latest | jq -r '.tag_name' > v2ray.txt"
-      - name: ffsend
-        run: "curl -skL https://api.github.com/repos/timvisee/ffsend/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > ffsend.txt"
+      - name: transfer
+        run: "https://api.github.com/repos/Mikubill/transfer/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' > transfer.txt"
       - name: coredns
-        run: "curl -skL https://api.github.com/repos/coredns/coredns/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > coredns.txt"
+        run: "curl -skL https://api.github.com/repos/coredns/coredns/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' > coredns.txt"
       - name: frp
-        run: "curl -skL https://api.github.com/repos/fatedier/frp/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > frp.txt"
+        run: "curl -skL https://api.github.com/repos/fatedier/frp/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' > frp.txt"
       - name: cfssl
-        run: "curl -skL https://api.github.com/repos/cloudflare/cfssl/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > cfssl.txt"
+        run: "curl -skL https://api.github.com/repos/cloudflare/cfssl/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' > cfssl.txt"
       - name: kubernetes
         run: "curl -skLo kubernetes.txt https://dl.k8s.io/release/stable-1.txt"
       - name: cpolar
