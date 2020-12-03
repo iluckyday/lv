@@ -12,7 +12,7 @@ jobs:
       - name: v2ray
         run: "curl -skL https://api.github.com/repos/v2ray/v2ray-core/releases/latest | jq -r '.tag_name' > v2ray.txt"
       - name: transfer
-        run: "https://api.github.com/repos/Mikubill/transfer/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' > transfer.txt"
+        run: "curl -skL https://api.github.com/repos/Mikubill/transfer/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' > transfer.txt"
       - name: coredns
         run: "curl -skL https://api.github.com/repos/coredns/coredns/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")' > coredns.txt"
       - name: frp
