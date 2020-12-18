@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: v2ray
-        run: "curl -skL https://api.github.com/repos/v2ray/v2ray-core/releases/latest | jq -r '.tag_name' > v2ray.txt"
+        run: "curl -skL https://api.github.com/repos/v2fly/v2ray-core/releases/latest | jq -r '.tag_name' > v2ray.txt"
       - name: transfer
         run: "curl -skL https://api.github.com/repos/Mikubill/transfer/releases/latest | grep -oP '\"tag_name\": \"\\K(.*)(?=\")' > transfer.txt"
       - name: coredns
