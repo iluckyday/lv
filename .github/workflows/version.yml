@@ -34,8 +34,8 @@ jobs:
           /tmp/ngrok version  > ngrok.txt
       - name: commit
         run: |
-          git config --global user.name "iluckyday"
-          git config --global user.email "luckyday1990@mail.com"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add .
           git commit -m "$(date +'%Y%m%d')"
-          "git push origin master || true"
+          git push
