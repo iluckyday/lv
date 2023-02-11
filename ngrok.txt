@@ -1,1 +1,1 @@
-ngrok version 2.3.40
+ngrok version 2.3.41
